@@ -1,0 +1,14 @@
+{
+  "editor.tabSize": 2,
+  "files.exclude": {
+    "**/.vscode": false,
+    "**/.gitignore": true,
+    "**/build": true,
+    "**/src": true,
+    "**/node_modules": true,
+    "**/yarn.lock": true,
+    "**/nodemon.json": true,
+    "**/tsconfig.json": true,
+    "**/package-lock.json": true
+  }
+}

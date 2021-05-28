@@ -1,0 +1,8 @@
+{
+  "watch": [
+    "build"
+  ],
+  "ext": "js",
+  "execold": "ts-node ./src/index.ts",
+  "exec": "node ./build/src/index.js"
+}
