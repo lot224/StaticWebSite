@@ -25,14 +25,11 @@ export default class Server {
     const staticPath = path.join(__dirname, '../../../web');
 
     this.app.use((req, res, next) => {
-      if (req.path.indexOf('.') === -1) {
-        const file = path.join(staticPath, req.path + '.html');
-        if (fs.existsSync(file) === true)
-          req.url += '.html'
-
-        next();
-      } else
-        next();
+      const file = path.join(staticPath, req.path + '.html');
+      if (fs.existsSync(file) === true)
+        req.url += '.html'
+      
+      next();
     });
 
     this.app.use(express.static(staticPath));
@@ -45,7 +42,7 @@ export default class Server {
   onRequestStart = (request: core.Request, response: core.Response, next: core.NextFunction) => {
     // Here we can log usage analytics to see what is being called.
     const staticPath = path.join(__dirname, '../../../web');
-
+    
     let url = request.originalUrl;
     if (request.originalUrl.indexOf('?') > 0)
       url = url.substr(0, request.originalUrl.indexOf('?'));
@@ -53,7 +50,7 @@ export default class Server {
     const file = path.join(staticPath, url);
     const type = chalk.blue('REQUEST');
     const method = chalk.yellow(request.method);
-
+    
     if (fs.existsSync(file) === true) {
       console.log(`${type}\t${method}\t${chalk.green(url)}`);
     } else {
@@ -71,7 +68,6 @@ export default class Server {
     const router = express.Router();
 
     this.app.use('/', router);
-
 
     this.app.listen(port);
     console.log(chalk.blue(`Site Running (http://localhost:${port}/)`));
